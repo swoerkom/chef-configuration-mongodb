@@ -21,3 +21,19 @@ end
 package 'mongodb-org' do
   action :upgrade
 end
+
+
+service 'mongodb-org' do
+  supports status: true, restart: true, reload: true
+  action [:enable, :start]
+end
+
+
+template '/etc/mongod.conf' do
+  source 'mongodb_proxy.conf.erb'
+  variables proxy_port: 27017
+end
+
+template '/lib/systemd/system/mongod.service' do
+  source 'mongod.service.erb'
+end

@@ -21,3 +21,7 @@ describe package 'mongodb-org' do
   it { should be_installed }
   its('version') { should match /3\./ }
 end
+
+describe http('http://localhost', enable_remote_worker: true) do
+  its('status') { should cmp 502 }
+end

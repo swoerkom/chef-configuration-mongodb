@@ -22,17 +22,24 @@ describe 'mongodb::default' do
     it 'updates all sources' do
       expect(chef_run).to update_apt_update 'update'
     end
-    it 'should add mungo to the source list' do
+    it 'should add mongodb to the source list' do
       expect(chef_run).to add_apt_repository 'mongodb-org'
     end
     it 'should install mongodb' do
       expect(chef_run).to upgrade_package 'mongodb-org'
     end
-    
 
-    describe file('/Users/tech-a04/Documents/week-9/day-3/chef/cookbooks/mongodb--proxy/templates/nginx_proxy.conf.erb') do
-    it { should exist }
-  end
+    it 'should create a proxy.conf template in /etc/mongod.conf' do
+      expect(chef_run).to create_template("/etc/mongod.conf").with_variables(proxy_port: 3000)
+    end
+
+    it 'should create /etc/mongod.conf' do
+      expect(chef_run).to create_template("/etc/mongod.conf")
+    end
+
+    it 'should create /lib/systemd/system/mongod.service' do
+      expect(chef_run).to create_template "/lib/systemd/system/mongod.service"
+    end
 
 
   end
