@@ -6,7 +6,7 @@ provisioner:
   name: chef_zero
   chef_license: accept-no-persist
   product_name: chef
-  product_version: 14.10.9
+  product_version: 14
    # You may wish to disable always updating cookbooks in CI or other testing environments.
   # For example:
   #   always_update_cookbooks: <%= !ENV['CI'] %>

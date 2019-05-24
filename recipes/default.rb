@@ -30,7 +30,7 @@ end
 
 
 template '/etc/mongod.conf' do
-  source 'mongodb_proxy.conf.erb'
+  source 'mongodb.conf.erb'
   variables proxy_port: 27017
 end
 

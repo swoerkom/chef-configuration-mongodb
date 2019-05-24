@@ -30,7 +30,7 @@ describe 'mongodb::default' do
     end
 
     it 'should create a proxy.conf template in /etc/mongod.conf' do
-      expect(chef_run).to create_template("/etc/mongod.conf").with_variables(proxy_port: 3000)
+      expect(chef_run).to create_template("/etc/mongod.conf").with_variables(proxy_port: 27017)
     end
 
     it 'should create /etc/mongod.conf' do
